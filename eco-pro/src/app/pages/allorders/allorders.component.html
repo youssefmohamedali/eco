@@ -1,0 +1,63 @@
+<section class="w-full max-w-4xl mx-auto py-12 px-4 mt-8 " >
+  <h1 class="text-4xl text-[#003F62] py-4 font-semibold text-center mb-8">Your Orders</h1>
+
+  <div class="space-y-8">
+    @for (order of orders; track order.id) {
+      <div class="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-100">
+        <!-- Order Header -->
+        <div class="p-6 bg-gradient-to-r from-[var(--primary-color)] to-blue-500 text-white">
+          <h3 class="text-2xl font-bold">Order ID: {{ order.id }}</h3>
+          <p class="text-sm mt-1">📅 Date: {{ order.createdAt | date: 'medium' }}</p>
+        </div>
+
+        <!-- Order Details -->
+        <div class="p-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Payment Info -->
+            <div>
+              <p class="text-lg font-semibold text-gray-800">💰 Total Price: <span class="text-[var(--primary-color)]">{{ order.totalOrderPrice | currency: 'GBP' }}</span></p>
+              <p class="text-gray-700 mt-2">💳 Payment Method: <span class="font-medium">{{ order.paymentMethodType }}</span></p>
+              <p class="mt-2">
+                ⚡ Payment Status:
+                <span class="px-2 py-1 rounded font-bold {{ order.isPaid ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700' }}">
+                  {{ order.isPaid ? 'Paid' : 'Not Paid' }}
+                </span>
+              </p>
+            </div>
+
+            <!-- Customer Info -->
+            <div class="bg-gray-50 p-4 rounded-lg">
+              <h4 class="font-semibold text-gray-700 mb-2">👤 Customer Information</h4>
+              <p class="text-gray-600">👨‍💼 Name: {{ order.user.name }}</p>
+              <p class="text-gray-600">📧 Email: {{ order.user.email }}</p>
+              <p class="text-gray-600">📞 Phone: {{ order.user.phone }}</p>
+            </div>
+          </div>
+
+          <!-- Shipping Address -->
+          <div class="mt-6 bg-blue-50 p-4 rounded-lg">
+            <h4 class="font-semibold text-blue-700 mb-2">📍 Shipping Address</h4>
+            <p class="text-blue-600">🏠 {{ order.shippingAddress.details }}, {{ order.shippingAddress.city }}</p>
+            <p class="text-blue-600">📞 {{ order.shippingAddress.phone }}</p>
+          </div>
+
+          <!-- Ordered Products -->
+          <div class="mt-6">
+            <h4 class="text-xl font-semibold text-gray-800 mb-4">🛍 Ordered Products</h4>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+              @for (item of order.cartItems; track $index) {
+                <div class="bg-white border border-gray-200 rounded-lg p-4 flex items-center space-x-4 hover:shadow-md transition-shadow">
+                  <img [src]="item.product.imageCover" alt="Product" class="w-20 h-20 object-cover rounded-lg">
+                  <div>
+                    <p class="text-gray-800 font-medium">{{ item.product.title }}</p>
+                    <p class="text-gray-600">{{ item.price | currency: 'GBP' }}</p>
+                  </div>
+                </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

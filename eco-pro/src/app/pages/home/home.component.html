@@ -1,0 +1,177 @@
+<div class="container mx-auto px-8 mt-8 ">
+  <section class="pt-16">
+      <div class="grid grid-cols-1 md:grid-cols-[70%_minmax(0,1fr)] gap-4" id="me">
+          <div>
+              <owl-carousel-o [options]="customMainOptions">
+                  <ng-template carouselSlide>
+                      <img src="images/slider-image-1.jpeg"class="h-[200px] md:h-[300px] w-full object-cover" alt="">
+                  </ng-template>
+                  <ng-template carouselSlide>
+                      <img src="/image ecomm/img2.avif" class="h-[200px] md:h-[300px] w-full object-cover" alt="">
+                  </ng-template>
+                  <ng-template carouselSlide>
+                      <img src="/image ecomm/img3.avif" class="h-[200px] md:h-[300px] w-full object-cover" alt="">
+                  </ng-template>
+                  <ng-template carouselSlide>
+                      <img src="/image ecomm/img4.avif" class="h-[200px] md:h-[300px] w-full object-cover" alt="">
+                  </ng-template>
+                  <ng-template carouselSlide>
+                      <img src="/image ecomm/img5.avif" class="h-[200px] md:h-[300px] w-full object-cover" alt="">
+                  </ng-template>
+                  <ng-template carouselSlide>
+                      <img src="/image ecomm/img6.avif" class="h-[200px] md:h-[300px] w-full object-cover" alt="">
+                  </ng-template>
+                  <ng-template carouselSlide>
+                      <img src="/image ecomm/img7.avif" class="h-[200px] md:h-[300px] w-full object-cover" alt="">
+                  </ng-template>
+              </owl-carousel-o>
+          </div>
+
+          <div class="flex flex-col gap-4  ">
+              <img src="/image ecomm/slider-image-1.jpeg" class="w-full h-[100px] md:h-[150px] object-cover" alt="">
+              <img src="/image ecomm/slider-2.jpeg" class="w-full h-[100px] md:h-[150px] object-cover" alt="">
+          </div>
+      </div>
+  </section>
+
+  <section class="py-20">
+      <div class="py-16">
+          <div class="bg-[#EDA415] w-4 h-10 rounded-md">
+              <h2 class="me-5 ps-5 py-2 text-xl font-bold">Today's</h2>
+          </div>
+      </div>
+      <owl-carousel-o [options]="customOptions">
+          @for(cat of categories; track cat._id) {
+
+          <ng-template carouselSlide>
+              <img [src]="cat.image" class="h-[250px] object-contain" alt="">
+              <h1 class="text-center text-[#003F62] py-4 font-semibold hover:text-[#745b29]">
+                  {{cat.name}}
+              </h1>
+          </ng-template>
+          }
+      </owl-carousel-o>
+  </section>
+  <div class="flex justify-center mx-auto">
+    <div class="relative">
+      <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+        <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+        </svg>
+      </div>
+      <input [(ngModel)]="nameProduct" name="search" type="text" class="bg-white text-gray-900 text-lg rounded-lg focus:ring-[#EDA415] focus:border-[#EDA415] block w-full pl-72 p-2" required />
+    </div>
+  </div>
+
+  <div class= "  grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 pb-28 pt-20" role="button">
+      @if (products && products.length > 0) {
+          @for (prod of products | search:nameProduct ; track prod.id) {
+
+              <div  class=" overflow-hidden relative w-full max-w-sm bg-white border border-gray-300 rounded-lg shadow-xl hover:shadow-2xl transition-shadow duration-300">
+
+                  <div  class="card px-5 py-4">
+                    <div  [routerLink]="['/details' ,prod.id]">
+                      <a >
+                        <img class="w-[300px] h-48 mx-auto object-contain rounded-t-lg" [src]="prod.imageCover" alt="product image" />
+                    </a>
+                      <a >
+                        <h3 class="text-xl font-semibold tracking-tight text-gray-900">
+                            {{prod.title.split(" ", 3).join(" ")}}
+                        </h3>
+                        <h3 class="text-md font-medium text-gray-500">
+                            {{prod.category.name.split(" ", 3).join(" ")}}
+                        </h3>
+                    </a>
+                    <div class="flex items-center mt-2">
+                        <div class="flex items-center space-x-1 rtl:space-x-reverse">
+                        </div>
+                        <span class="text-gray-500 text-md font-semibold px-2.5 py-0.5 rounded-sm ms-3">5.0</span>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-2xl font-bold text-[#003F62]">{{prod.price}}$</span>
+                    </div>
+                    </div>
+                    <button
+                    (click)="addToWishlist(prod.id)"
+                    class="absolute top-3 right-3  rounded-full shadow  text-red-600 ">
+                    <i class="fa-solid fa-heart text-xl" [ngClass]="{'text-[var(--primary-color)]': wishlist.includes(prod.id)}"></i>
+                  </button>
+           <button (click)="addToCart(prod.id)" type="button" class="w-full mt-4 text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none font-medium rounded-none text-sm px-5 py-2.5 text-center inline-flex items-center justify-center transition-colors duration-300">
+            Add To Cart
+        </button>
+        
+        
+                  </div>
+              </div>
+          }
+      } @else {
+          <p>No products available</p>
+      }
+  </div>
+</div>
+
+<div class="container mx-auto px-8">
+  <section class=" flex items-center justify-center  py-24 ">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+      <div class="flex">
+        <div><i class="fa-solid fa-box-open text-3xl py-3 pe-3 text-[#EDA415]"></i></div>
+        <div>
+          <h1 class="font-extrabold text-[#003F62]">Free delivery</h1>
+          <h6 class="font-semibold text-[#003F62]">on order above $50,00</h6>
+        </div>
+      </div>
+      <div class="flex">
+        <div><i class="fa-solid fa-crown text-3xl py-3 pe-3 text-[#EDA415]"></i></div>
+        <div>
+          <h1 class="font-extrabold text-[#003F62]">Best quality</h1>
+          <h6 class="font-semibold text-[#003F62]">best quality in low price</h6>
+        </div>
+      </div>
+
+      <div class="flex">
+        <div><i class="fa-solid fa-shield text-3xl py-3 pe-3 text-[#EDA415]"></i></div>
+        <div>
+          <h1 class="font-extrabold text-[#003F62]">1 year warranty</h1>
+          <h6 class="font-semibold text-[#003F62]">Available warranty</h6>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<section  >
+  <div class="py-16">
+    <div class="bg-[#EDA415] w-4 h-10 rounded-md ms-14">
+        <h2 class=" w-72 me-5 ps-5 py-2 text-xl font-bold">Other collection</h2>
+    </div>
+</div>
+  <div >
+    <owl-carousel-o [options]="userOptions">
+      @for (users of userHome; track users.id) {
+        <ng-template carouselSlide>
+          <img [src]="users.image" class="w-[50px] p-4 h-[250px]  object-contain " alt="">
+          <h1 class="text-center pt-7 text-[#003F62] font-semibold hover:text-[#745b29]">{{users.title.split(" ", 2).join(" ")}}</h1>
+          <h1 class="text-center text-[#003F62] font-semibold hover:text-[#745b29]" >{{users.price}}</h1>
+        </ng-template>
+      }
+    </owl-carousel-o>
+  </div>
+</section>
+<section class="py-36">
+  <div class="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 sm:p-5  gap-4">
+    <div class="transition-all duration-500 ease-in-out transform hover:scale-110">
+      <img src="/image ecomm/brand-4.png" alt="" class="w-full h-auto">
+    </div>
+    <div class="transition-all duration-500 ease-in-out transform hover:scale-110">
+      <img src="/image ecomm/brand-5.png" alt="" class="w-full h-auto">
+    </div>
+    <div class="transition-all duration-500 ease-in-out transform hover:scale-110">
+      <img src="/image ecomm/brand-6.png" alt="" class="w-full h-auto">
+    </div>
+    <div class="transition-all duration-500 ease-in-out transform hover:scale-110">
+      <img src="/image ecomm/brand-7.png" alt="" class="w-full h-auto">
+    </div>
+    <div class="transition-all duration-500 ease-in-out transform hover:scale-110">
+      <img src="/image ecomm/brand-8.png" alt="" class="w-full h-auto">
+    </div>
+  </div>
+</section>

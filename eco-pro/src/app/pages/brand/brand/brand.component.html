@@ -1,0 +1,29 @@
+<section class="py-12 mt-8 ">
+  <div class="py-4 ps-6">
+    <div class="bg-[#EDA415] w-4 h-10 rounded-md">
+        <h2 class=" ps-5 py-2 text-xl font-bold">Brands</h2>
+    </div>
+</div>
+  <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      @for (brand of brands; track brand.id) {
+        <div  [routerLink]="['/brandDetails', brand.id]" class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-white dark:border-gray-300">
+          <a href="#">
+            <img class="rounded-t-lg w-full h-48 object-cover" [src]="brand.image" alt=" " />
+          </a>
+          <div class="p-5">
+            <a href="#">
+              <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-black text-center">{{ brand.name }}</h5>
+            </a>
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>
+<li>
+          <h1 routerLink="home">
+            <i class=" text-xl  cursor-pointer ">products</i>
+            <div class="block py-2 px-3 text-gray-900 hover:bg-gray-300 rounded-sm md:p-3"></div>
+          </h1>
+</li>

@@ -1,0 +1,39 @@
+<div class="mx-auto my-20 px-4 sm:px-8 md:px-16 lg:px-24 xl:px-48">
+  <section>
+    <div class="items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[60%_minmax(0,1fr)] gap-8">
+      <div class="flex flex-col justify-center"> <!-- تم تغيير هذا السطر -->
+        <div class="flex justify-center"> <!-- تم إضافة هذا السطر -->
+          <img [src]="selectedImage || detailsProduct.imageCover" class="w-full max-w-[350px] h-[350px]   object-contain" alt="">
+        </div>
+        <div class="grid grid-cols-4 gap-2 mt-4 mx-auto">
+          @for (image of detailsProduct.images; track image) {
+            <img class="w-full h-16 md:h-20 object-cover rounded-lg cursor-pointer border-2 border-gray-100 hover:border-[var(--primary-color)]"
+                 [src]="image"
+                 alt="Thumbnail"
+                 (click)="changeMainImage(image)">
+          }
+        </div>
+      </div>
+
+      <div class="space-y-4 shadow-sm rounded shadow-[#003F62] p-4">
+        <h1 class="text-2xl font-bold text-gray-800">{{detailsProduct.title}}</h1>
+        <p class="text-gray-600">{{detailsProduct.description}}</p>
+        <p class="text-gray-500">{{detailsProduct.category.name}}</p>
+
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-1 rtl:space-x-reverse">
+          </div>
+          <span class="text-gray-500 text-md font-semibold px-2.5 py-0.5 rounded-sm">5.0</span>
+        </div>
+        <h1 class="text-xl font-bold text-red-900">Price : <span class="text-[#003F62]">{{detailsProduct.price}}</span></h1>
+
+        <button (click)="addToCart(detailsProduct.id)" type="button" class="w-full mt-4 text-black border-[#EDA415] border-2 bg-white hover:bg-[#003F62] hover:text-white focus:ring-4 focus:outline-black font-medium rounded-b-[30px] rounded-l-[29px] text-sm px-5 py-2.5 text-center inline-flex items-center justify-center transition-colors duration-300">
+          <svg class="w-3.5 h-3.5 me-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
+            <path d="M15 12a1 1 0 0 0 .962-.726l2-7A1 1 0 0 0 17 3H3.77L3.175.745A1 1 0 0 0 2.208 0H1a1 1 0 0 0 0 2h.438l.6 2.255v.019l2 7 .746 2.986A3 3 0 1 0 9 17a2.966 2.966 0 0 0-.184-1h2.368c-.118.32-.18.659-.184 1a3 3 0 1 0 3-3H6.78l-.5-2H15Z"/>
+          </svg>
+          Add To Cart
+        </button>
+      </div>
+    </div>
+  </section>
+</div>

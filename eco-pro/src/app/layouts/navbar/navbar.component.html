@@ -1,0 +1,57 @@
+<nav class="bg-gray-200 fixed z-50 w-full">
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between p-4 shadow-2xl">
+     
+      <a class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="/images/freshcart-logo.svg" alt="">
+      </a>
+
+     
+      <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-300 focus:outline-none focus:ring-2" aria-controls="navbar-default" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+      </button>
+
+      
+      <div class="flex items-center space-x-8">
+ 
+        <ul class="font-medium flex space-x-8">
+          <li><h1 routerLink="home"><i class="text-xl cursor-pointer">Home</i></h1></li>
+          <li><h1 routerLink="home"><i class="text-xl cursor-pointer">Products</i></h1></li>
+          <li><h1 routerLink="category"><i class="text-xl cursor-pointer">Categories</i></h1></li>
+          <li><h1 routerLink="brand"><i class="text-xl cursor-pointer">Brands</i></h1></li>
+        </ul>
+
+     
+        <div class="flex items-center space-x-6">
+          <div class="icon-footer text-gray-900 space-x-5 py-3 transition-all duration-500">
+            <a href="https://www.facebook.com/share/1BRep5hqjJ/?mibextid=wwXIfr" target="_blank" class="hover:text-gray-700">
+              <i class="fa-brands fa-facebook-f text-black"></i>
+            </a>
+            <a href="https://x.com/ahmede73754?s=21" target="_blank" class="hover:text-gray-700">
+              <i class="fa-brands fa-twitter text-black"></i>
+            </a>
+            <a href="https://www.instagram.com/ahmed_emad_ramadan?igsh=OWRzZmdxMG95OWR0&utm_source=qr" target="_blank" class="hover:text-gray-700">
+              <i class="fa-brands fa-instagram text-black"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/ahmed-emad-ramadan-108bb6316?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank" class="hover:text-gray-700">
+              <i class="fa-brands fa-linkedin-in text-black"></i>
+            </a>
+          </div>
+          <div class="flex items-center space-x-4 relative">
+            <h1 routerLink="wishlist">
+              <i class="text-green-500 text-xl fa-regular fa-heart cursor-pointer hover:text-gray-900 transition duration-300"></i>
+              <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-black border-2 border-white rounded-full -top-4 left-1">{{countWishlist}}</div>
+            </h1>
+            <h1 routerLink="/cart" role="button">
+              <i class="text-green-500 text-xl fa-solid fa-cart-shopping cursor-pointer hover:text-gray-900 transition duration-300"></i>
+              <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-black border-2 border-white rounded-full -top-4 left-12">{{cartCount}}</div>
+            </h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

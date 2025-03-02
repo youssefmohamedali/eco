@@ -1,0 +1,74 @@
+<section class="py-10 my-20 ">
+  <div class="container mx-auto px-4">
+    <form [formGroup]="checkOutForm" class="max-w-lg mx-auto">
+      <!-- Details Textarea -->
+      <div class="relative z-0 w-full mb-5 group">
+        <textarea
+          formControlName="details"
+          name="details"
+          id="details"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          required
+        ></textarea>
+        <label
+          for="details"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Details</label
+        >
+      </div>
+
+      <!-- Phone Input -->
+      <div class="relative z-0 w-full mb-5 group">
+        <input
+          formControlName="phone"
+          type="tel"
+          name="phone"
+          id="phone"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          required
+        />
+        <label
+          for="phone"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >Phone</label
+        >
+      </div>
+
+      <!-- City Input -->
+      <div class="relative z-0 w-full mb-5 group">
+        <input
+          formControlName="city"
+          type="text"
+          name="city"
+          id="city"
+          class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-black dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          placeholder=" "
+          required
+        />
+        <label
+          for="city"
+          class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:start-0 rtl:peer-focus:translate-x-1/4 rtl:peer-focus:left-auto peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+          >City</label
+        >
+      </div>
+
+      <!-- Payment Buttons -->
+      <div class="flex flex-col space-y-4">
+        <button
+          (click)="submitFormCard()"
+          class="w-full bg-[#003F62] text-white py-2 rounded-lg hover:bg-[#002A43] transition-colors"
+        >
+          Payment Online
+        </button>
+        <button
+          (click)="submitFormCash()"
+          class="w-full bg-[#003F62] text-white py-2 rounded-lg hover:bg-[#002A43] transition-colors"
+        >
+          Payment Cash
+        </button>
+      </div>
+    </form>
+  </div>
+</section>
